@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>添加购物车商品列表</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<style type="text/css">
+		.content{
+			width: 1000px;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="content">
+		<!-- 商品列表 -->
+		<table class="table table-bordered" id="goods-table">
+			<thead>
+				<th>序号</th>
+				<th>商品名称</th>
+				<th>颜色</th>
+				<th>数量</th>
+				<th>操作</th>
+			</thead>
+			<tbody>
+				<tr v-for="(good, index) in goods">
+					<td>{{good.id}}</td>
+					<td>{{good.name}}</td>
+					<td>{{good.color}}</td>
+					<td>
+						<button v-on:click="reduce(good)">-</button>
+						<input type="text" type="number"  v-model="good.default_nums" />
+						<button v-on:click="good.default_nums += 1">+</button>
+					</td>
+					<td>
+						<button class="btn btn-sm btn-danger" v-on:click="addToCar(good)">加入购物车</button>
+						<span>已加入购物车的该商品数量:</span>
+						<span>{{good.add_nums}}</span>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5">
+						<button class="btn btn-danger pull-right" v-on:click="balance()">结算</button>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+
+	<!-- js -->
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/shopping_cart.js"></script>
+
+</body>
+</html>
